@@ -1,0 +1,15 @@
+# golang
+run
+
+# ide
+.idea
+.vsc
+
+# local config
+config/.challenge.yaml
+
+# challenge data dump
+data_dump.csv
+
+# test coverage
+.testCoverage.out

@@ -1,0 +1,14 @@
+debug = "true"
+pkgname = "model"
+output = "internal/repository/model"
+add-global-variants = true
+
+[psql]
+    dbname = "postgres"
+    schema = "public"
+    host = "localhost"
+    port = 5432
+    user = "postgres"
+    pass = "pwd"
+    sslmode = "disable"
+    blacklist = ["goose_db_version"]

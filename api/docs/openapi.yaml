@@ -1,0 +1,82 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: API
+  description: API specification
+  contact:
+    name: API Team
+servers:
+  - url: https://localhost:3011/api
+tags:
+  - name: geo
+paths:
+  /ip/locate:
+    post:
+      tags: [ geo ]
+      description: Returns information about the IP address location
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - ip_address
+              properties:
+                ip_address:
+                  type: string
+                  example: '33.173.188.44'
+      responses:
+        200:
+          description: IP address location found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+        400:
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: location not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: unexpected error
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: error text if something goes wrong
+    Location:
+      type: object
+      properties:
+        country:
+          type: string
+        city:
+          type: string
+        coordinates:
+          type: object
+          properties:
+            latitude:
+              type: number
+              format: float
+              minimum: -90
+              maximum: 90
+            longitude:
+              type: number
+              format: float
+              minimum: -180
+              maximum: 180

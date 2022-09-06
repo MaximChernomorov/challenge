@@ -1,0 +1,5 @@
+psqURL: postgres://postgres:pwd@localhost:5432/postgres?sslmode=disable
+httpAddr: :3011
+docsAuth:
+  user: 1
+  pass: 1
